@@ -118,7 +118,8 @@ def get_all_products_from_dynamic_page(url: str) -> list[Product]:
 
 
 def get_all_products() -> None:
-    with WebDriver() as driver:
+    driver = WebDriver()
+    try:
         set_driver(driver)
         products = {
             "home.csv": get_all_products_from_dynamic_page(
@@ -140,6 +141,8 @@ def get_all_products() -> None:
                 "/test-sites/e-commerce/more/phones/touch"
             ),
         }
+    finally:
+        driver.close()
 
     write_to_csv(products)
 
