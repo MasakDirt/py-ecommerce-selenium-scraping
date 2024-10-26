@@ -142,7 +142,7 @@ def get_all_products() -> None:
             ),
         }
     finally:
-        driver.close()
+        driver.quit()
 
     write_to_csv(products)
 
